@@ -32,8 +32,13 @@ class MainActivity : BaseActivity() {
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityMainBinding
         mBinding.linearNoDataFound.visibility = View.VISIBLE
+        init()
         setAdapter()
         clickListener()
+    }
+
+    private fun init() {
+        mBinding.edtSearch.setText("Natural")
     }
 
     private fun clickListener() {
@@ -62,7 +67,6 @@ class MainActivity : BaseActivity() {
             Snackbar.make(mBinding.pd, "No Internet Connection", Snackbar.LENGTH_LONG).show()
             return
         }
-        mBinding.edtSearch.setText("kotlin")
         if (isRefresh){
             dataList?.clear()
             adapter.notifyAdapter(dataList!!)

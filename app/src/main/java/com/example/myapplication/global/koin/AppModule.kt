@@ -5,6 +5,7 @@ import com.example.myapplication.global.apiutils.ApiServices
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -36,7 +37,7 @@ val appModule = module {
 
         Retrofit.Builder()
             .baseUrl(ApiConstant.BASE_URL)
-//            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(get() as Gson))
             .build()

@@ -4,7 +4,11 @@ import com.example.myapplication.model.bean.SearchRespo
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.*
-
+/**
+ * Author : Deepak Sharma(Webaddicted)
+ * Email : techtamper@gmail.com
+ * Profile : https://github.com/webaddicted
+ */
 interface ApiServices {
     @GET("rest/?method=flickr.photos.search")
     fun searchApi(

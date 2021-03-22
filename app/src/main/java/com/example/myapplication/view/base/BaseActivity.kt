@@ -6,6 +6,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import com.example.myapplication.R
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -36,4 +38,37 @@ abstract class BaseActivity : AppCompatActivity() {
         val networkInfo=connectivityManager.activeNetworkInfo
         return  networkInfo!=null && networkInfo.isConnected
     }
+    fun navigateFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+//        fragmentTransaction.setCustomAnimations(R.anim.trans_left_in, R.anim.trans_left_out, R.anim.trans_right_in, R.anim.trans_right_out)
+//        fragmentTransaction.setCustomAnimations(
+//            R.animator.fragment_slide_left_enter,
+//            R.animator.fragment_slide_left_exit,
+//            R.animator.fragment_slide_right_enter,
+//            R.animator.fragment_slide_right_exit
+//        )
+        fragmentTransaction.replace(layoutContainer, fragment)
+        if (isEnableBackStack)
+            fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)
+        fragmentTransaction.commitAllowingStateLoss()
+
+    }
+
+    fun navigateAddFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.setCustomAnimations(R.anim.trans_left_in, R.anim.trans_left_out, R.anim.trans_right_in, R.anim.trans_right_out)
+//        fragmentTransaction.setCustomAnimations(
+//            R.animator.fragment_slide_left_enter,
+//            R.animator.fragment_slide_left_exit,
+//            R.animator.fragment_slide_right_enter,
+//            R.animator.fragment_slide_right_exit
+//        )
+        fragmentTransaction.add(layoutContainer, fragment)
+        if (isEnableBackStack)
+            fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)
+        fragmentTransaction.commitAllowingStateLoss()
+    }
+
 }

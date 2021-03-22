@@ -4,7 +4,7 @@ import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.databinding.RowSearchBinding
-import com.example.myapplication.global.apiutils.ApiConstant
+import com.example.myapplication.global.constant.ApiConstant
 import com.example.myapplication.model.bean.SearchRespo
 import com.example.myapplication.view.base.BaseAdapter
 

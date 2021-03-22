@@ -1,7 +1,7 @@
 package com.example.myapplication.model.repo
 
 import androidx.lifecycle.MutableLiveData
-import com.example.myapplication.global.apiutils.ApiConstant
+import com.example.myapplication.global.constant.ApiConstant
 import com.example.myapplication.global.apiutils.ApiResponse
 import com.example.myapplication.global.apiutils.ApiServices
 import com.example.myapplication.global.apiutils.DataFetchCall

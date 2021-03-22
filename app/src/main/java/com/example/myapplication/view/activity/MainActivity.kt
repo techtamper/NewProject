@@ -1,5 +1,7 @@
 package com.example.myapplication.view.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.example.myapplication.R
@@ -16,6 +18,7 @@ import com.example.myapplication.model.bean.SearchReq
 import com.example.myapplication.view.adapter.SearchAdapter
 import com.example.myapplication.view.base.BaseActivity
 import com.example.myapplication.view.base.ScrollListener
+import com.example.myapplication.view.login.LoginActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlin.collections.ArrayList
 
@@ -25,6 +28,22 @@ class MainActivity : BaseActivity() {
     private lateinit var mBinding: ActivityMainBinding
     private val mViewModel: SearchViewModel by viewModel()
     private var dataList: ArrayList<SearchRespo.Photos.Photo>? = ArrayList()
+
+    companion object {
+        val TAG: String = LoginActivity::class.java.simpleName
+        fun newIntent(activity: Activity) {
+            activity.startActivity(Intent(activity, MainActivity::class.java))
+        }
+
+        fun newClearLogin(context: Activity?) {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            context?.startActivity(intent)
+            context?.finish()
+        }
+    }
+
+
     override fun getLayout(): Int {
         return R.layout.activity_main
     }
@@ -53,7 +72,7 @@ class MainActivity : BaseActivity() {
         adapter = SearchAdapter(dataList)
         mBinding.rv.layoutManager = GridLayoutManager(this, 3)
         mBinding.rv.addOnScrollListener(object :
-            ScrollListener(mBinding.rv.layoutManager as LinearLayoutManager) {
+                ScrollListener(mBinding.rv.layoutManager as LinearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 mPageCount++
                 callSearchImgApi(false)
@@ -62,12 +81,12 @@ class MainActivity : BaseActivity() {
         mBinding.rv.adapter = adapter
     }
 
-    private fun callSearchImgApi(isRefresh : Boolean) {
+    private fun callSearchImgApi(isRefresh: Boolean) {
         if (!isNetworkAvailable()) {
             Snackbar.make(mBinding.pd, "No Internet Connection", Snackbar.LENGTH_LONG).show()
             return
         }
-        if (isRefresh){
+        if (isRefresh) {
             dataList?.clear()
             adapter.notifyAdapter(dataList!!)
         }
@@ -101,16 +120,16 @@ class MainActivity : BaseActivity() {
                 if (response.data?.stat.equals("fail")) {
                     Snackbar.make(mBinding.pd, "${response.data?.message}", Snackbar.LENGTH_LONG).show()
                 } else {
-                    if (response.data!!.photos?.photo?.size==0) {
+                    if (response.data!!.photos?.photo?.size == 0) {
                         Snackbar.make(
-                            mBinding.pd,
-                            "No data found",
-                            Snackbar.LENGTH_LONG
+                                mBinding.pd,
+                                "No data found",
+                                Snackbar.LENGTH_LONG
                         ).show()
-                    return
+                        return
                     }
                     if (dataList == null || dataList?.size == 0) dataList =
-                        response.data.photos?.photo
+                            response.data.photos?.photo
                     else response.data.photos?.let { dataList?.addAll(it.photo) }
                     adapter.notifyAdapter(dataList!!)
                 }

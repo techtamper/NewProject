@@ -1,4 +1,9 @@
-package com.example.myapplication.global.apiutils
+package com.example.myapplication.global.constant
+/**
+ * Author : Deepak Sharma(Webaddicted)
+ * Email : techtamper@gmail.com
+ * Profile : https://github.com/webaddicted
+ */
 class ApiConstant {
 
     companion object {

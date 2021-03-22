@@ -3,10 +3,14 @@ package com.example.myapplication.global.apiutils
 import com.example.myapplication.R
 import com.example.myapplication.global.AppApplication
 import java.net.SocketTimeoutException
-
+/**
+ * Author : Deepak Sharma(Webaddicted)
+ * Email : techtamper@gmail.com
+ * Profile : https://github.com/webaddicted
+ */
 class ApiResponse<T>(val status: Status, val data: T?, error: Throwable?) {
 
-    private var errorMessage: String? = null
+     var errorMessage: String? = null
     private var errorType: Error? = null
 
     init {

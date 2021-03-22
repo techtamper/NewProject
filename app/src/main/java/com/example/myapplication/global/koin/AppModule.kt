@@ -1,6 +1,6 @@
 package com.example.myapplication.global.koin
 
-import com.example.myapplication.global.apiutils.ApiConstant
+import com.example.myapplication.global.constant.ApiConstant
 import com.example.myapplication.global.apiutils.ApiServices
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
@@ -12,6 +12,11 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+/**
+ * Author : Deepak Sharma(Webaddicted)
+ * Email : techtamper@gmail.com
+ * Profile : https://github.com/webaddicted
+ */
 val appModule = module {
 
     /* PROVIDE GSON SINGLETON */

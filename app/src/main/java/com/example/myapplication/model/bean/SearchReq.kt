@@ -1,6 +1,6 @@
 package com.example.myapplication.model.bean
 
-import com.example.myapplication.global.apiutils.ApiConstant
+import com.example.myapplication.global.constant.ApiConstant
 import com.google.gson.annotations.SerializedName
 
 class SearchReq {

@@ -10,5 +10,6 @@
     <color name="grey">#CDCDCD</color>
     <color name="primary_color">#00bfff</color>
     <color name="sec_color">#00ffbf</color>
-
+    <color name="app_color">#00bfff</color>
+    <color name="transprant">#00000000</color>
 </resources>
